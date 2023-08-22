@@ -25,6 +25,10 @@ class Item
   end
 
   def can_be_archived?
-    puts 'still need some work'
+	if publish_date >= 10.years.ago
+    puts 'It can be archived'
+	else
+	puts 'It can not be archived'
+	end
   end
 end
