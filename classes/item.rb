@@ -25,6 +25,10 @@ class Item
   end
 
   def can_be_archived?
-    puts 'still need some work'
+    ((Date.today - Date.parse(@publish_date)) / 365) > 10
+  end
+
+  def move_to_archive
+    @archived = true if can_be_archived?
   end
 end
