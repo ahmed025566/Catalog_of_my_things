@@ -25,10 +25,10 @@ class Item
   end
 
   def can_be_archived?
-	if publish_date >= 10.years.ago
-    puts 'It can be archived'
-	else
-	puts 'It can not be archived'
-	end
+    ((Date.today - Date.parse(@publish_date)) / 365) > 10
+  end
+
+  def move_to_archive
+    @archived = true if can_be_archived?
   end
 end
