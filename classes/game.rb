@@ -9,7 +9,7 @@ class Game < Item
     @last_played_at = last_played_at
   end
 
-  def to_hash
+  def to_json
     {
       multiplayer: @multiplayer,
       last_played_at: @last_played_at,
