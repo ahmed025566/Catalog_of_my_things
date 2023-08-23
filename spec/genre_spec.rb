@@ -1,5 +1,5 @@
-require './classes/genre'
-require './classes/music_album'
+require_relative '../genre'
+require_relative '../music_album'
 
 describe 'Genre tests' do
   genre = Genre.new(333, 'motivation')
