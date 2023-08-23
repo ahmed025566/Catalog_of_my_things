@@ -1,5 +1,5 @@
-require './classes/genre'
-require './classes/music_album'
+require_relative '../genre'
+require_relative '../music_album'
 
 describe 'music album tests' do
   music_album = MusicAlbum.new(555, '2020-10-20', archived: false, on_spotify: false)

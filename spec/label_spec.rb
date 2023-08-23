@@ -6,9 +6,9 @@ RSpec.describe Label do
     it 'associates label with item and adds to items list' do
       label = Label.new('Test Label', 'Red')
       book = Book.new(1, '2023-08-01', 'Publisher', 'good')
-      label.add_item(book)
+      label.add_book(book)
       expect(book.label).to eq(label)
-      expect(label.items.length).to eq(1)
+      expect(label.books.length).to eq(1)
     end
   end
 end
