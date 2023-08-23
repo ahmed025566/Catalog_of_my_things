@@ -36,7 +36,7 @@ class Item
 
   def can_be_archived?
     @since_pub_date = (Date.today - @pub_date)
-    @since_pub_date >= 3653 # 10 years in days
+    @since_pub_date >= 3653
   end
 
   def move_to_archive
