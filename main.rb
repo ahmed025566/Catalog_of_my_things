@@ -1,5 +1,7 @@
 require_relative 'book'
 require_relative 'label'
+require_relative 'author'
+require_relative 'genre'
 
 class ConsoleApp
   def initialize
@@ -25,7 +27,17 @@ class ConsoleApp
     puts "Enter cover state ('good' or 'bad'):"
     cover_state = gets.chomp
 
-    book = Book.new(id, publish_date, publisher, cover_state)
+    puts 'Enter author first name:'
+    author_first_name = gets.chomp
+    puts 'Enter author last name:'
+    author_last_name = gets.chomp
+    author = Author.new(author_first_name, author_last_name)
+
+    puts 'Enter genre name:'
+    genre_name = gets.chomp
+    genre = Genre.new(genre_name)
+
+    book = Book.new(id, publish_date, publisher, cover_state, author: author, genre: genre)
     @books << book
 
     puts 'Book added successfully!'
