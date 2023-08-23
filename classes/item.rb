@@ -16,7 +16,7 @@ class Item
 
   def genre=(genre)
     @genre = genre
-    genre.music_album.push(self) unless genre.music_album.include?(self)
+    genre.music_albums.push(self) unless genre.music_albums.include?(self)
   end
 
   def author=(author)
@@ -24,9 +24,13 @@ class Item
     author.games.push(self) unless author.games.include?(self)
   end
 
+  private
+
   def can_be_archived?
     ((Date.today - Date.parse(@publish_date)) / 365) > 10
   end
+
+  public
 
   def move_to_archive
     @archived = true if can_be_archived?
