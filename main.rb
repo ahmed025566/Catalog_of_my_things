@@ -68,7 +68,7 @@ class ConsoleApp
   end
 
   def exit_app
-    puts 'Exiting...'
+    puts 'Goodbye!'
   end
 
   def display_invalid_option
