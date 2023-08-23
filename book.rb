@@ -12,4 +12,11 @@ class Book < Item
   def can_be_archived?
     super || @cover_state == 'bad'
   end
+
+  def self.list_books(books)
+    books.each do |book|
+      label_title = book.label ? book.label.title : 'N/A'
+      puts "Book ID: #{book.id}, Title: #{label_title}, Publisher: #{book.publisher}"
+    end
+  end
 end
