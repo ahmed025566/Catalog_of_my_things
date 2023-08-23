@@ -2,11 +2,25 @@ require_relative 'book'
 require_relative 'label'
 require_relative 'author'
 require_relative 'genre'
+require 'json'
 
 class ConsoleApp
   def initialize
     @books = []
     @labels = []
+  end
+
+  def save_data_to_json(filename, data)
+    File.open(filename, 'w') do |file|
+      file.write(JSON.pretty_generate(data))
+    end
+  end
+
+  def save_all_data
+    save_data_to_json('books.json', @books)
+    save_data_to_json('labels.json', @labels)
+    # Save other data like genres and authors in a similar way
+    puts 'Data saved to JSON files.'
   end
 
   def list_books
@@ -56,6 +70,7 @@ class ConsoleApp
       when 3
         add_book
       when 4
+        save_all_data
         exit_app
         break
       else
