@@ -17,9 +17,10 @@ class ConsoleApp
   end
 
   def save_all_data
-    save_data_to_json('books.json', @books)
-    save_data_to_json('labels.json', @labels)
-    # Save other data like genres and authors in a similar way
+    serialized_books = @books.map(&:to_hash)
+    save_data_to_json('books.json', serialized_books)
+    save_data_to_json('labels.json', @labels.map(&:to_hash))
+
     puts 'Data saved to JSON files.'
   end
 
@@ -51,7 +52,13 @@ class ConsoleApp
     genre_name = gets.chomp
     genre = Genre.new(genre_name)
 
-    book = Book.new(id, publish_date, publisher, cover_state, author: author, genre: genre)
+    puts 'Enter label title:'
+    label_title = gets.chomp
+    puts 'Enter label color:'
+    label_color = gets.chomp
+    label = Label.new(label_title, label_color)
+
+    book = Book.new(id, publish_date, publisher, cover_state, author: author, genre: genre, label: label)
     @books << book
 
     puts 'Book added successfully!'

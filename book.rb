@@ -3,13 +3,14 @@ require_relative 'author'
 require_relative 'genre'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state, :label, :author, :genre
+  attr_accessor :publisher, :cover_state, :author, :genre
+  attr_reader :label
 
-  def initialize(id, publish_date, publisher, cover_state, author: nil, genre: nil, archived: false)
+  def initialize(id, publish_date, publisher, cover_state, label: nil, author: nil, genre: nil, archived: false)
     super(id, publish_date, archived: archived)
     @publisher = publisher
     @cover_state = cover_state
-    @label = nil
+    @label = label
     @author = author
     @genre = genre
   end
@@ -25,5 +26,17 @@ class Book < Item
       label_title = book.label ? book.label.title : 'N/A'
       puts "Book ID: #{book.id}, Title: #{label_title}, Publisher: #{book.publisher}, Author: #{author_name}, Genre: #{genre_name}"
     end
+  end
+
+  def to_hash
+    {
+      id: @id,
+      publish_date: @publish_date,
+      publisher: @publisher,
+      cover_state: @cover_state,
+      author: @author&.to_hash,
+      genre: @genre&.to_hash,
+      label: @label&.to_hash
+    }
   end
 end

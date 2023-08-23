@@ -20,4 +20,12 @@ class Label
       puts "Label ID: #{label.id}, Title: #{label.title}"
     end
   end
+
+  def to_hash
+    {
+      id: @id,
+      title: @title,
+      color: @color
+    }
+  end
 end

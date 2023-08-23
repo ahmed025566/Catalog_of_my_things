@@ -1,3 +1,42 @@
 [
-  "#<Book:0x0000016a4b0d82f0>"
+  {
+    "id": 34,
+    "publish_date": "2022-12-14",
+    "publisher": "Newsleter",
+    "cover_state": "good",
+    "author": {
+      "id": 896,
+      "first_name": "GARDIMY",
+      "last_name": "CHARLES"
+    },
+    "genre": {
+      "id": 209,
+      "name": "science"
+    },
+    "label": {
+      "id": null,
+      "title": "web",
+      "color": "green"
+    }
+  },
+  {
+    "id": 45,
+    "publish_date": "2017-05-25",
+    "publisher": "GDM",
+    "cover_state": "good",
+    "author": {
+      "id": 675,
+      "first_name": "Cassandra",
+      "last_name": "Toussaint"
+    },
+    "genre": {
+      "id": 263,
+      "name": "Math"
+    },
+    "label": {
+      "id": null,
+      "title": "v",
+      "color": "white"
+    }
+  }
 ]
