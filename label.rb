@@ -14,10 +14,4 @@ class Label
     @books.push(book)
     book.label = self
   end
-
-  def self.list_labels(labels)
-    labels.each do |label|
-      puts "Label ID: #{label.id}, Title: #{label.title}"
-    end
-  end
 end
