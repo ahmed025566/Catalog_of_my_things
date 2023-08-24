@@ -1,41 +1,21 @@
 [
   {
-    "id": 34,
-    "publish_date": "2022-12-14",
-    "publisher": "Newsleter",
+    "id": 23,
+    "publish_date": "2012",
+    "publisher": "microverse",
     "cover_state": "good",
     "author": {
-      "id": 896,
-      "first_name": "GARDIMY",
-      "last_name": "CHARLES"
+      "id": 954,
+      "first_name": "Ariel",
+      "last_name": "Camus"
     },
     "genre": {
-      "id": 209,
-      "name": "science"
+      "id": 485,
+      "name": "M"
     },
     "label": {
       "id": null,
-      "title": "web",
-      "color": "green"
-    }
-  },
-  {
-    "id": 45,
-    "publish_date": "2017-05-25",
-    "publisher": "GDM",
-    "cover_state": "good",
-    "author": {
-      "id": 675,
-      "first_name": "Cassandra",
-      "last_name": "Toussaint"
-    },
-    "genre": {
-      "id": 263,
-      "name": "Math"
-    },
-    "label": {
-      "id": null,
-      "title": "v",
+      "title": "Director",
       "color": "white"
     }
   }

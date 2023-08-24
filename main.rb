@@ -11,14 +11,11 @@ class ConsoleApp
   end
 
   def save_data_to_json(filename, data)
-    File.open(filename, 'w') do |file|
-      file.write(JSON.pretty_generate(data))
-    end
+    File.write(filename, JSON.pretty_generate(data))
   end
 
   def save_all_data
-    serialized_books = @books.map(&:to_hash)
-    save_data_to_json('books.json', serialized_books)
+    save_data_to_json('books.json', @books.map(&:to_hash))
     save_data_to_json('labels.json', @labels.map(&:to_hash))
 
     puts 'Data saved to JSON files.'
@@ -33,32 +30,13 @@ class ConsoleApp
   end
 
   def add_book
-    puts 'Enter book ID:'
-    id = gets.chomp.to_i
-    puts 'Enter publish date (YYYY-MM-DD):'
-    publish_date = gets.chomp
-    puts 'Enter publisher:'
-    publisher = gets.chomp
-    puts "Enter cover state ('good' or 'bad'):"
-    cover_state = gets.chomp
+    book_details = gather_book_details
+    author = create_author
+    genre = create_genre
+    label = create_label
 
-    puts 'Enter author first name:'
-    author_first_name = gets.chomp
-    puts 'Enter author last name:'
-    author_last_name = gets.chomp
-    author = Author.new(author_first_name, author_last_name)
-
-    puts 'Enter genre name:'
-    genre_name = gets.chomp
-    genre = Genre.new(genre_name)
-
-    puts 'Enter label title:'
-    label_title = gets.chomp
-    puts 'Enter label color:'
-    label_color = gets.chomp
-    label = Label.new(label_title, label_color)
-
-    book = Book.new(id, publish_date, publisher, cover_state, author: author, genre: genre, label: label)
+    book = Book.new(book_details[:id], book_details[:publish_date], book_details[:publisher],
+                    book_details[:cover_state], author: author, genre: genre, label: label)
     @books << book
 
     puts 'Book added successfully!'
@@ -89,7 +67,7 @@ class ConsoleApp
   private
 
   def display_options
-    puts '\nOptions:'
+    puts "\nOptions:"
     puts '1. List all books'
     puts '2. List all labels'
     puts '3. Add a book'
@@ -107,6 +85,41 @@ class ConsoleApp
 
   def display_invalid_option
     puts 'Invalid option. Please choose a valid option.'
+  end
+
+  def gather_book_details
+    puts 'Enter book ID:'
+    id = gets.chomp.to_i
+    puts 'Enter publish date (YYYY-MM-DD):'
+    publish_date = gets.chomp
+    puts 'Enter publisher:'
+    publisher = gets.chomp
+    puts "Enter cover state ('good' or 'bad'):"
+    cover_state = gets.chomp
+
+    { id: id, publish_date: publish_date, publisher: publisher, cover_state: cover_state }
+  end
+
+  def create_author
+    puts 'Enter author first name:'
+    author_first_name = gets.chomp
+    puts 'Enter author last name:'
+    author_last_name = gets.chomp
+    Author.new(author_first_name, author_last_name)
+  end
+
+  def create_genre
+    puts 'Enter genre name:'
+    genre_name = gets.chomp
+    Genre.new(genre_name)
+  end
+
+  def create_label
+    puts 'Enter label title:'
+    label_title = gets.chomp
+    puts 'Enter label color:'
+    label_color = gets.chomp
+    Label.new(label_title, label_color)
   end
 end
 

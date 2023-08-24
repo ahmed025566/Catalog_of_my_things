@@ -3,16 +3,16 @@ require_relative 'author'
 require_relative 'genre'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state, :author, :genre
-  attr_reader :label
+  attr_accessor :publisher, :cover_state
+  attr_reader :label, :author, :genre
 
-  def initialize(id, publish_date, publisher, cover_state, label: nil, author: nil, genre: nil, archived: false)
-    super(id, publish_date, archived: archived)
+  def initialize(id, publish_date, publisher, cover_state, options = {})
+    super(id, publish_date, archived: options[:archived] || false)
     @publisher = publisher
     @cover_state = cover_state
-    @label = label
-    @author = author
-    @genre = genre
+    @label = options[:label]
+    @author = options[:author]
+    @genre = options[:genre]
   end
 
   def can_be_archived?
@@ -21,10 +21,11 @@ class Book < Item
 
   def self.list_books(books)
     books.each do |book|
-      author_name = book.author ? "#{book.author.first_name} #{book.author.last_name}" : 'N/A'
+      author_name = book.author ? book.author.full_name : 'N/A'
       genre_name = book.genre ? book.genre.name : 'N/A'
       label_title = book.label ? book.label.title : 'N/A'
-      puts "Book ID: #{book.id}, Title: #{label_title}, Publisher: #{book.publisher}, Author: #{author_name}, Genre: #{genre_name}"
+      puts "Book ID: #{book.id}, Title: #{label_title}, Publisher: #{book.publisher}, " \
+           "Author: #{author_name}, Genre: #{genre_name}"
     end
   end
 
