@@ -2,17 +2,17 @@ require_relative 'item'
 
 class Label
   attr_accessor :title, :color
-  attr_reader :items
+  attr_reader :books
 
   def initialize(title, color)
     @title = title
     @color = color
-    @items = []
+    @books = []
   end
 
-  def add_item(item)
-    @items << item
-    item.label = self
+  def add_book(book)
+    @books.push(book)
+    book.label = self
   end
 
   def self.list_labels(labels)
