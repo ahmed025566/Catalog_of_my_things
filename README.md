@@ -87,7 +87,7 @@ or
 Install this project with:
 
 ```sh
-  cd OOP-school-library
+  cd Catalog_of_my_things
   
   bundle install
 ```
