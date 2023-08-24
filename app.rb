@@ -2,6 +2,9 @@ require_relative 'music_album'
 require_relative 'genre'
 require_relative 'book'
 require_relative 'label'
+require_relative 'game'
+require_relative 'author'
+require_relative 'creator_module'
 
 class App
   def initialize
@@ -9,34 +12,10 @@ class App
     @genres = []
     @books = []
     @labels = []
+    @games = []
+    @authors = []
   end
-
-  def create_music_album(id, publish_date, archived, on_spotify)
-    @music_albums.push(MusicAlbum.new(id, publish_date, archived: archived, on_spotify: on_spotify))
-  end
-
-  def create_genre(id, name)
-    @genres.push(Genre.new(id, name))
-  end
-
-  def list_all_music_albums
-    @music_albums.each_with_index do |music_album, idx|
-      puts "#{idx}) id: #{music_album.id}, publish_date: #{music_album.publish_date}, archived:
-      #{music_album.archived}, on_spotify: #{music_album.on_spotify}"
-    end
-  end
-
-  def list_all_geners
-    @genres.each_with_index do |genre, idx|
-      puts "#{idx}) id: #{genre.id}, name: #{genre.name}"
-    end
-  end
-
-  def validate_date(date_string)
-    pattern = /\d{4}-\d{2}-\d{2}/
-    match = pattern.match(date_string)
-    !match
-  end
+  include Create
 
   def assign_genre
     puts 'want to assign to an exsisting genre [1] or create a new one [2]'
@@ -78,27 +57,6 @@ class App
     assign_genre
   end
 
-  def create_book(id, publish_date, publisher, cover_state, archived)
-    @books.push(Book.new(id, publish_date, publisher, cover_state, archived: archived))
-  end
-
-  def create_label(title, color)
-    @labels.push(Label.new(title, color))
-  end
-
-  def list_all_books
-    @books.each_with_index do |book, idx|
-      puts "#{idx}) id: #{book.id}, publish_date: #{book.publish_date}, archived:
-      #{book.archived}, published: #{book.publisher}, cover_state: #{book.cover_state}"
-    end
-  end
-
-  def list_all_labels
-    @labels.each_with_index do |label, idx|
-      puts "#{idx}) title: #{label.title}, color: #{label.color}"
-    end
-  end
-
   def assign_label
     puts 'want to assign to an exsisting label [1] or create a new one [2]'
     choice = gets.chomp.to_i
@@ -107,7 +65,7 @@ class App
       puts 'Please select a gerne'
       list_all_labels
       choice = gets.chomp.to_i
-      @labels[choice].add_label(@books[@books.length - 1])
+      @labels[choice].add_book(@books[@books.length - 1])
       puts 'book created successfully'
     when 2
       puts 'Tilte: '
@@ -139,5 +97,49 @@ class App
     archived = gets.chomp.downcase == 'y'
     create_book(id, publish_date, publisher, cover_state, archived)
     assign_label
+  end
+
+  def assign_author
+    puts 'want to assign to an exsisting author [1] or create a new one [2]'
+    choice = gets.chomp.to_i
+    case choice
+    when 1
+      puts 'Please select an author'
+      list_all_authors
+      choice = gets.chomp.to_i
+      @authors[choice].add_game(@games[@games.length - 1])
+      puts 'game created successfully'
+    when 2
+      puts 'ID: '
+      id = gets.chomp
+      puts 'first_name: '
+      first_name = gets.chomp
+      puts 'last_name: '
+      last_name = gets.chomp
+      create_author(id, first_name, last_name)
+      @authors[@authors.length - 1].add_game(@games[@games.length - 1])
+      puts 'game album created successfully'
+    end
+  end
+
+  def init_game
+    puts 'Id: '
+    id = gets.chomp.to_i
+    puts 'publish Date: YYYY-MM-DD'
+    publish_date = gets.chomp
+    validate = validate_date(publish_date)
+    while validate
+      puts 'please enter the publish date like that YYYY-MM-DD'
+      publish_date = gets.chomp
+      validate = validate_date(publish_date)
+    end
+    puts 'multiplayer: '
+    multiplayer = gets.chomp
+    puts 'last_played_at'
+    last_played_at = gets.chomp
+    puts 'archvied? [Y/N]'
+    archived = gets.chomp.downcase == 'y'
+    create_game(id, publish_date, multiplayer, last_played_at, archived)
+    assign_author
   end
 end

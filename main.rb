@@ -8,7 +8,10 @@ def show_options
   puts '4 - Create book'
   puts '5 - list all books'
   puts '6 - list all labels'
-  puts '7 - Exit'
+  puts '7 - Create a game'
+  puts '8 - list all games'
+  puts '9 - list all authors'
+  puts '10 - Exit'
 end
 
 class Main
@@ -24,7 +27,10 @@ class Main
       '4' => app.method(:init_book),
       '5' => app.method(:list_all_books),
       '6' => app.method(:list_all_labels),
-      '7' => lambda {
+      '7' => app.method(:init_game),
+      '8' => app.method(:list_all_games),
+      '9' => app.method(:list_all_authors),
+      '10' => lambda {
         puts 'Thank you for using this app!'
         exit = true
       }
