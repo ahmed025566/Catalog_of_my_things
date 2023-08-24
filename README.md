@@ -113,9 +113,22 @@ To run tests, run the following command:
 ## 👥 Authors <a name="authors"></a>
 
 > 👤 **Gardimy Charles**
+
 - GitHub: [@Gardimy](https://github.com/Gardimy)
 - Twitter: [@gardyelontiga45](https://twitter.com/gardyelontiga45)
 - LinkedIn: [Gardimy charles](https://www.linkedin.com/in/gardimy-charles)
+
+👤 **Ahmed Elkholy**
+
+- GitHub: [@ahmed](https://github.com/ahmed025566)
+- Twitter: [@AhmedEl18692792](https://twitter.com/AhmedEl18692792)
+- LinkedIn: [Ahmed Salah](https://www.linkedin.com/in/ahmed-salah025566/)
+
+👤 **Ali Bello Imoukhuede**
+
+- GitHub: [@githubhandle](https://github.com/devalibello)
+- Twitter: [@twitterhandle](https://twitter.com/i_am_aalee)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ali-bello-imoukhuede/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
