@@ -12,4 +12,14 @@ class Book < Item
   def can_be_archived?
     super || @cover_state == 'bad'
   end
+
+  def to_hash
+    {
+      id: @id,
+      publish_date: @publish_date,
+      publisher: @publisher,
+      cover_state: @cover_state,
+      archived: @archived
+    }
+  end
 end

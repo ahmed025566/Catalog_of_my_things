@@ -9,12 +9,13 @@ class Game < Item
     @last_played_at = last_played_at
   end
 
-  def to_json(*_args)
+  def to_hash
     {
+      id: @id,
+      publish_date: @publish_date,
       multiplayer: @multiplayer,
       last_played_at: @last_played_at,
-      publish_date: @publish_date,
-      author: { first_name: author.first_name, last_name: author.last_name }
+      archived: @archived
     }
   end
 

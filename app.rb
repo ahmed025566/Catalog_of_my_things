@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ParameterLists
 require_relative 'music_album'
 require_relative 'genre'
 require_relative 'book'
@@ -5,16 +6,18 @@ require_relative 'label'
 require_relative 'game'
 require_relative 'author'
 require_relative 'creator_module'
+require 'json'
 
 class App
-  def initialize
-    @music_albums = []
-    @genres = []
-    @books = []
-    @labels = []
-    @games = []
-    @authors = []
+  def initialize(music_albums, books, games, labels, genres, authors)
+    @music_albums = music_albums
+    @genres = genres
+    @books = books
+    @labels = labels
+    @games = games
+    @authors = authors
   end
+
   include Create
 
   def assign_genre
@@ -141,5 +144,21 @@ class App
     archived = gets.chomp.downcase == 'y'
     create_game(id, publish_date, multiplayer, last_played_at, archived)
     assign_author
+  end
+
+  def save_date
+    music_albums_json = @music_albums.map(&:to_hash)
+    books_json = @books.map(&:to_hash)
+    games_json = @games.map(&:to_hash)
+    genres_json = @genres.map(&:to_hash)
+    labels_json = @labels.map(&:to_hash)
+    authors_json = @authors.map(&:to_hash)
+
+    File.write('storage/music_albums.json', JSON.generate(music_albums_json))
+    File.write('storage/books.json', JSON.generate(books_json))
+    File.write('storage/games.json', JSON.generate(games_json))
+    File.write('storage/genres.json', JSON.generate(genres_json))
+    File.write('storage/labels.json', JSON.generate(labels_json))
+    File.write('storage/authors.json', JSON.generate(authors_json))
   end
 end

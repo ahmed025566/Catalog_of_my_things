@@ -14,4 +14,12 @@ class Label
     @books.push(book)
     book.label = self
   end
+
+  def to_hash
+    {
+      title: @title,
+      color: @color,
+      books: @books.map(&:to_hash)
+    }
+  end
 end

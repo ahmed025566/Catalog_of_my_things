@@ -1,4 +1,5 @@
 require_relative 'app'
+require_relative 'loader'
 
 def show_options
   puts "\nPlease choose an option by entering a number:"
@@ -15,7 +16,8 @@ def show_options
 end
 
 class Main
-  app = App.new
+  loader = Loader.new
+  app = App.new(loader.music_albums, loader.books, loader.games, loader.labels, loader.genres, loader.authors)
   exit = false
   until exit
     show_options
@@ -32,6 +34,7 @@ class Main
       '9' => app.method(:list_all_authors),
       '10' => lambda {
         puts 'Thank you for using this app!'
+        app.save_date
         exit = true
       }
     }

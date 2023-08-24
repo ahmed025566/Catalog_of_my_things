@@ -13,4 +13,13 @@ class Author
     @games << game unless @games.include?(game)
     game.author = self
   end
+
+  def to_hash
+    {
+      id: @id,
+      first_name: @first_name,
+      last_name: @last_name,
+      games: @games.map(&:to_hash)
+    }
+  end
 end

@@ -13,4 +13,15 @@ class MusicAlbum < Item
   def can_be_archived?
     super() and @on_spotify
   end
+
+  public
+
+  def to_hash
+    {
+      id: @id,
+      publish_date: @publish_date,
+      archived: @archived,
+      on_spotify: @on_spotify
+    }
+  end
 end
